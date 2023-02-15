@@ -1,0 +1,39 @@
+{
+  "people": [
+    {
+      "name": "John",
+      "surname": "Smith",
+      "sex": "male",
+      "age": 26,
+      "photo": "https://m.media-amazon.com/images/M/MV5BMjM3MjM3NTAxM15BMl5BanBnXkFtZTgwMTY0Nzg2OTE@._V1_.jpg"
+    },
+    {
+      "name": "Angela",
+      "surname": "Whinston",
+      "sex": "female",
+      "age": 31,
+      "photo": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.KSljsFxGOTM_uoWjsvZKZgHaLH%26pid%3DApi&f=1&ipt=271061afc917f59e7c43f9e38810cd0284ef755cff6dd1e48121b12bad2d88ac&ipo=images"
+    },
+    {
+      "name": "Alex",
+      "surname": "Solberry",
+      "sex": "male",
+      "age": 35,
+      "photo": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.RmAe4ztAM5yHEOYMhRZZbwHaKF%26pid%3DApi&f=1&ipt=68d3f29e868cd4d929ed8598cbff4bb54dcca21360e895274322f929d3782642&ipo=images"
+    },
+    {
+      "name": "Anna",
+      "surname": "Rayan",
+      "sex": "female",
+      "age": 23,
+      "photo": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.lPDU5WxB7J8GxzLewG2iKgHaK1%26pid%3DApi&f=1&ipt=a4286ab11f7763851a7ba42a0318fb72b051fb19707fa2595c7aa8de1c9bf258&ipo=images"
+    },
+    {
+      "name": "Michael",
+      "surname": "Dobkin",
+      "sex": "male",
+      "age": 30,
+      "photo": "https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w425/cast/3b2b388f58aae2da_yr_michaelm_800x1000.jpg"
+    }
+  ]
+}
