@@ -14,24 +14,24 @@ window.addEventListener('DOMContentLoaded', () => {
         // let json = JSON.stringify(obj);
 
         /** For XMLHttpRequest */
-        const request = new XMLHttpRequest();
-        request.open('POST', './api.php');
-        // request.setRequestHeader('Content-type', 'multipart/form-data');
-        request.send(formData);
-        request.addEventListener('load', function () {
-            if (request.status == 200) {
-                // let data = JSON.parse(request.response);
-                console.log(request.response);
-                // createCards(data);
-            } else {
-                console.error('Что-то пошло не так');
-            }
-        });
+        // const request = new XMLHttpRequest();
+        // request.open('POST', './api.php');
+        // // request.setRequestHeader('Content-type', 'multipart/form-data');
+        // request.send(formData);
+        // request.addEventListener('load', function () {
+        //     if (request.status == 200) {
+        //         // let data = JSON.parse(request.response);
+        //         console.log(request.response);
+        //         // createCards(data);
+        //     } else {
+        //         console.error('Что-то пошло не так');
+        //     }
+        // });
 
         /** For FETCH */
-        // getResource('http://localhost:3000/people', obj)
-        //     .then(data => createCards(data))
-        //     .catch(err => console.error(err));
+        getResource('./api.php', formData)
+            .then(data => console.log(data))
+            .catch(err => console.error(err));
 
         /** For AXIOS */
         // axios.post('http://localhost:3000/people', obj);
@@ -47,21 +47,21 @@ window.addEventListener('DOMContentLoaded', () => {
     // document.querySelector('button').addEventListener('click', (e) => req(e), { once: true });
 
     /** For FETCH */
-    // async function getResource(url, data) {
-    //     let res = await fetch(`${url}`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-type': 'application/json; charset=utf-8'
-    //         },
-    //         body: JSON.stringify(data)
-    //     });
+    async function getResource(url, data) {
+        let res = await fetch(`${url}`, {
+            method: 'POST',
+            // headers: {
+            //     'Content-type': 'multipart/form-data'
+            // },
+            body: data
+        });
 
-    //     if (!res.ok) {
-    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-    //     }
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+        }
 
-    //     return await res.json();
-    // }
+        return await res.text();
+    }
 
     /** For AXIOS */
     // async function getResource(url) {
