@@ -29,11 +29,12 @@ window.addEventListener('DOMContentLoaded', () => {
         // });
 
         /** For FETCH */
-        getResource('http://localhost:3000/people', obj)
-            .then(data => createCards(data))
-            .catch(err => console.error(err));
+        // getResource('http://localhost:3000/people', obj)
+        //     .then(data => createCards(data))
+        //     .catch(err => console.error(err));
 
         /** For AXIOS */
+        axios.post('http://localhost:3000/people', obj);
         // getResource('http://localhost:3000/people')
         //     .then(data => createCards(data.data))
         //     .catch(err => console.error(err));
@@ -45,21 +46,21 @@ window.addEventListener('DOMContentLoaded', () => {
     // document.querySelector('button').addEventListener('click', (e) => req(e), { once: true });
 
     /** For FETCH */
-    async function getResource(url, data) {
-        let res = await fetch(`${url}`, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify(data)
-        });
+    // async function getResource(url, data) {
+    //     let res = await fetch(`${url}`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-type': 'application/json; charset=utf-8'
+    //         },
+    //         body: JSON.stringify(data)
+    //     });
 
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
+    //     if (!res.ok) {
+    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    //     }
 
-        return await res.json();
-    }
+    //     return await res.json();
+    // }
 
     /** For AXIOS */
     // async function getResource(url) {
