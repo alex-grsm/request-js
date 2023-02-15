@@ -1,19 +1,36 @@
 window.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
 
-    function req() {
-        // const request = new XMLHttpRequest();
-        // request.open('GET', 'http://localhost:3000/people');
-        // request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        // request.send();
-        // request.addEventListener('load', function () {
-        //     if (request.status == 200) {
-        //         let data = JSON.parse(request.response);
-        //         createCards(data);
-        //         console.log(data);
-        //     } else {
-        //         console.error('Что-то пошло не так');
-        //     }
-        // });
+    function req(e) {
+        e.preventDefault();
+        // let body = {
+        //     name: 'Someone',
+        //     surname: 'Else',
+        //     age: 26,
+        //     id: Math.random(),
+        // };
+        let formData = new FormData(form);
+        // formData.append('id', Math.random());
+
+        let obj = {};
+        formData.forEach((value, key) => {
+            obj[key] = value;
+        });
+        let json = JSON.stringify(obj);
+
+        const request = new XMLHttpRequest();
+        request.open('POST', 'http://localhost:3000/people');
+        request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        request.send(json);
+        request.addEventListener('load', function () {
+            if (request.status == 200) {
+                let data = JSON.parse(request.response);
+                console.log(data);
+                // createCards(data);
+            } else {
+                console.error('Что-то пошло не так');
+            }
+        });
 
         /** For FETCH */
         // getResource('http://localhost:3000/people')
@@ -21,14 +38,15 @@ window.addEventListener('DOMContentLoaded', () => {
         //     .catch(err => console.error(err));
 
         /** For AXIOS */
-        getResource('http://localhost:3000/people')
-            .then(data => createCards(data.data))
-            .catch(err => console.error(err));
+        // getResource('http://localhost:3000/people')
+        //     .then(data => createCards(data.data))
+        //     .catch(err => console.error(err));
 
-        this.remove();
+        // this.remove();
     }
 
-    document.querySelector('button').addEventListener('click', req, { once: true });
+    form.addEventListener('submit', (e) => req(e), { once: true });
+    // document.querySelector('button').addEventListener('click', (e) => req(e), { once: true });
 
     /** For FETCH */
     // async function getResource(url) {
@@ -42,15 +60,15 @@ window.addEventListener('DOMContentLoaded', () => {
     // }
 
     /** For AXIOS */
-    async function getResource(url) {
-        let res = await axios(`${url}`);
+    // async function getResource(url) {
+    //     let res = await axios(`${url}`);
 
-        if (res.status !== 200) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
+    //     if (res.status !== 200) {
+    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    //     }
 
-        return res;
-    }
+    //     return res;
+    // }
 
     function createCards(response) {
         response.forEach((item) => {
@@ -76,5 +94,4 @@ window.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.app').appendChild(card);
         });
     }
-
 });
