@@ -3,39 +3,35 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function req(e) {
         e.preventDefault();
-        // let body = {
-        //     name: 'Someone',
-        //     surname: 'Else',
-        //     age: 26,
-        //     id: Math.random(),
-        // };
+
         let formData = new FormData(form);
-        // formData.append('id', Math.random());
+        formData.append('id', Math.random());
 
         let obj = {};
         formData.forEach((value, key) => {
             obj[key] = value;
         });
-        let json = JSON.stringify(obj);
+        // let json = JSON.stringify(obj);
 
-        const request = new XMLHttpRequest();
-        request.open('POST', 'http://localhost:3000/people');
-        request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        request.send(json);
-        request.addEventListener('load', function () {
-            if (request.status == 200) {
-                let data = JSON.parse(request.response);
-                console.log(data);
-                // createCards(data);
-            } else {
-                console.error('Что-то пошло не так');
-            }
-        });
+        /** For XMLHttpRequest */
+        // const request = new XMLHttpRequest();
+        // request.open('POST', 'http://localhost:3000/people');
+        // request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        // request.send(json);
+        // request.addEventListener('load', function () {
+        //     if (request.status == 200) {
+        //         let data = JSON.parse(request.response);
+        //         console.log(data);
+        //         // createCards(data);
+        //     } else {
+        //         console.error('Что-то пошло не так');
+        //     }
+        // });
 
         /** For FETCH */
-        // getResource('http://localhost:3000/people')
-        //     .then(data => createCards(data))
-        //     .catch(err => console.error(err));
+        getResource('http://localhost:3000/people', obj)
+            .then(data => createCards(data))
+            .catch(err => console.error(err));
 
         /** For AXIOS */
         // getResource('http://localhost:3000/people')
@@ -49,15 +45,21 @@ window.addEventListener('DOMContentLoaded', () => {
     // document.querySelector('button').addEventListener('click', (e) => req(e), { once: true });
 
     /** For FETCH */
-    // async function getResource(url) {
-    //     let res = await fetch(`${url}`);
+    async function getResource(url, data) {
+        let res = await fetch(`${url}`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(data)
+        });
 
-    //     if (!res.ok) {
-    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-    //     }
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+        }
 
-    //     return await res.json();
-    // }
+        return await res.json();
+    }
 
     /** For AXIOS */
     // async function getResource(url) {
