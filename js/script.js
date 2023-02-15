@@ -29,12 +29,17 @@ window.addEventListener('DOMContentLoaded', () => {
         // });
 
         /** For FETCH */
-        getResource('./api.php', formData)
-            .then(data => console.log(data))
-            .catch(err => console.error(err));
+        // getResource('./api.php', formData)
+        //     .then(data => console.log(data))
+        //     .catch(err => console.error(err));
 
         /** For AXIOS */
-        // axios.post('http://localhost:3000/people', obj);
+        axios({
+            method: 'post',
+            url: './api.php',
+            data: formData,
+            headers: { 'content-type': 'multipart/form-data' },
+        }).then((data) => console.log(data.data));
 
         // getResource('http://localhost:3000/people')
         //     .then(data => createCards(data.data))
@@ -47,21 +52,21 @@ window.addEventListener('DOMContentLoaded', () => {
     // document.querySelector('button').addEventListener('click', (e) => req(e), { once: true });
 
     /** For FETCH */
-    async function getResource(url, data) {
-        let res = await fetch(`${url}`, {
-            method: 'POST',
-            // headers: {
-            //     'Content-type': 'multipart/form-data'
-            // },
-            body: data
-        });
+    // async function getResource(url, data) {
+    //     let res = await fetch(`${url}`, {
+    //         method: 'POST',
+    //         // headers: {
+    //         //     'Content-type': 'multipart/form-data'
+    //         // },
+    //         body: data
+    //     });
 
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
+    //     if (!res.ok) {
+    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    //     }
 
-        return await res.text();
-    }
+    //     return await res.text();
+    // }
 
     /** For AXIOS */
     // async function getResource(url) {
